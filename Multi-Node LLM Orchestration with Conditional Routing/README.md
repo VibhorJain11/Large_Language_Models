@@ -1,4 +1,4 @@
-# Multi-Node LLM Orchestration with Conditional Routing
+# ARTICLE GENERATOR: Multi-Node LLM Orchestration with Conditional Routing
 
 This project demonstrates a multi-node workflow orchestration using **LangGraph**'s `StateGraph` to manage a pipeline involving:
 
