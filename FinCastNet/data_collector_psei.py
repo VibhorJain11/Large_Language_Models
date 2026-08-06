@@ -5,7 +5,7 @@ from datetime import datetime, timezone
 from dateutil.relativedelta import relativedelta
 from dateutil import parser as dtparser
 from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
-import pytz  # ✅ Required for timezone conversion
+import pytz  #  Required for timezone conversion
 
 # ------------------ CONFIG ------------------
 INDEX_TICKER = "PSEI.PS"
@@ -143,7 +143,7 @@ def run_data_collection():
             has_excl = int("!" in r["text"])
             has_ques = int("?" in r["text"])
 
-            # ✅ Convert to PH time and flag headlines after 3 PM
+            #  Convert to PH time and flag headlines after 3 PM
             date_ph = r["date"].astimezone(ph_tz)
             post_3pm = int(date_ph.hour >= 15)
 
@@ -159,14 +159,14 @@ def run_data_collection():
                 "txt_len": txt_len,
                 "has_excl": has_excl,
                 "has_ques": has_ques,
-                "post_3pm_ph": post_3pm  # ✅ Added to CSV
+                "post_3pm_ph": post_3pm  #  Added to CSV
             })
 
         mo = nxt_mo
 
     df = pd.DataFrame(rows).drop_duplicates(["text", "date"])
     df.to_csv("psei_labeled_news.csv", index=False)
-    print("✅ Data saved to psei_labeled_news.csv")
+    print("Data saved to psei_labeled_news.csv")
 
 if __name__ == "__main__":
     run_data_collection()
