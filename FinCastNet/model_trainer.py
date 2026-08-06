@@ -54,7 +54,7 @@ def run_training():
 
     # Save new CSV with 'set_type' column
     df_ann.to_csv("nasdaq_labeled_news_with_split.csv", index=False)
-    print("✅ Saved CSV with train/test split column 'set_type' to psei_labeled_news_with_split.csv")
+    print(" Saved CSV with train/test split column 'set_type' to psei_labeled_news_with_split.csv")
 
     # Fit scaler only on training data to prevent leakage
     scaler = StandardScaler()
@@ -90,13 +90,13 @@ def run_training():
     with torch.no_grad():
         preds = torch.argmax(model(Xn_test, Xt_test), dim=1).numpy()
 
-    print("\n🧠 ANN Classification Report")
+    print("\n ANN Classification Report")
     print(classification_report(y_test, preds, target_names=["Bullish","Neutral","Bearish"], zero_division=0))
 
-    print("\n📊 Confusion Matrix — Fingpt")
+    print("\n Confusion Matrix — Fingpt")
     print(pd.crosstab(df['text_dir'], df['price_dir'], margins=True))
 
-    print("\n📊 Confusion Matrix — ANN")
+    print("\n Confusion Matrix — ANN")
     print(pd.crosstab(
         pd.Series(preds).map({0:"Bullish",1:"Neutral",2:"Bearish"}),
         pd.Series(y_test).map({0:"Bullish",1:"Neutral",2:"Bearish"}),
